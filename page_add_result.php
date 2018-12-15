@@ -1,35 +1,49 @@
+<?php
+  require("./include/variable_setting.php");
+?>
+
+<?php
+  /**
+   * connect to db
+   */
+  require("./include/db_connection.php");
+?>
+
+<?php
+  // 取得SQL指令
+  $SQL = "INSERT INTO $TABLE_NAME";
+  $SQL .= " VALUES  (";
+  $i = 0;
+  foreach ($TABLE_FIELD_NAME_ARRAY as $field_name) {
+    if ($i != 0) {
+      $SQL .= ", '";
+    }
+    $SQL .= $_COOKIE[$field_name];
+    if ($i != 0) {
+      $SQL .= "'";
+    }
+    $i++;
+  }
+  $SQL .= ")";
+  $SQL = stripslashes($SQL);
+  echo $SQL;
+?>
+
+
+
+
 <h2>資料庫管理系統-新增</h2>
 <hr>
 
 <?php
-if ( isset($_COOKIE["cust_no"]) ) {
-   // 取得SQL指令
-   $sql = "INSERT INTO basic(cust_no, name, id, tel_no, address)";
-   $sql .= " VALUES  (" . $_COOKIE["cust_no"] . ", '" . $_COOKIE["name"] . "', '";
-   $sql .= $_COOKIE["id"] . "', '" . $_COOKIE["tel_no"] . "', '" . $_COOKIE["address"] . "')";
-   $sql = stripslashes($sql);
+if ( isset($_COOKIE[$ID]) ) {
 
-
-
-  /**
-   * connect to db
-   */
-  require_once("./include/db_connection.php");
-
-
-
-  if ( mysqli_query($link, $sql) ){ // 執行SQL指令
-     echo '<p>!資料新增成功!</p>';
+  if ( mysqli_query($link, $SQL) ){ // 執行SQL指令
+    echo '<p>!資料新增成功!</p>';
   } else {
-     echo '<p style="color: red">!資料新增失敗!</p>';
+    echo '<p style="color: red">!資料新增失敗!</p>';
   }
 
-
-
-  /**
-   * close db
-   */
-  require_once("./include/db_connection.php");
 }
 ?>
 
@@ -42,3 +56,12 @@ if ( isset($_COOKIE["cust_no"]) ) {
 </p>
 
 <hr>
+
+
+
+<?php
+  /**
+   * close db
+   */
+  require("./include/db_close.php");
+?>

@@ -1,10 +1,21 @@
+<?php
+  require("./include/variable_setting.php");
+?>
+
+
+
+<?php
+/**
+ * Page's HTML
+ */
+$PAGE_QUERY = <<<HTML
+
 <h2>資料庫管理系統-查詢</h2>
 <hr>
 
 <p>
-  <!-- <form action="page_query_result.php" method="post"> -->
   <form action="controller.php" method="post">
-    客戶代號: <input type="text" name="M_ID"><br>
+    $ID: <input type="text" name="$ID"><br>
 
     <p>
       <input type="submit" name="operation_query" value="查詢">
@@ -15,3 +26,15 @@
 </p>
 
 <hr>
+
+HTML;
+?>
+
+
+
+<?php
+/**
+ * Output HTML
+ */
+echo $PAGE_QUERY;
+?>

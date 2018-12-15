@@ -1,24 +1,30 @@
-<h2>資料庫管理系統-查詢</h2>
-<hr>
+<?php
+  require("./include/variable_setting.php");
+?>
 
 <?php
-if ( isset($_COOKIE["M_ID"]) ) {
-  // 取得SQL指令
-  $sql = "SELECT * ";
-  $sql .= " FROM member WHERE M_ID = " . $_COOKIE["M_ID"];
-  $sql = stripslashes($sql);
-
-
-
   /**
    * connect to db
    */
-  require_once("./include/db_connection.php");
+  require("./include/db_connection.php");
+?>
+
+<?php
+  // 取得SQL指令
+  $SQL = "SELECT * ";
+  $SQL .= " FROM $TABLE_NAME WHERE $ID = $_COOKIE[$ID]";
+  $SQL = stripslashes($SQL);
+?>
 
 
+<h2>資料庫管理系統-查詢</h2>
+<hr>
 
+
+<?php
+if ( isset($_COOKIE[$ID]) ) {
   // 執行SQL查詢
-  $result = @mysqli_query($link, $sql);
+  $result = @mysqli_query($link, $SQL);
   if ( mysqli_errno($link) != 0 ) {
     echo "錯誤代碼: ".mysqli_errno($link)."<br/>";
     echo "錯誤訊息: ".mysqli_error($link)."<br/>";
@@ -28,14 +34,14 @@ if ( isset($_COOKIE["M_ID"]) ) {
     // echo "記錄總數: $total_records 筆<br/>";
 
     if ($total_records == 0) {
-      echo "客戶代號: " . $_POST['M_ID'] . '<br>';
+      echo "$ID: $_COOKIE[$ID] <br>";
       echo '<p style="color: red">!資料不存在!</p>';
     } else {
 
       echo '<table border=0 style="float:left">';
       while ( $meta = mysqli_fetch_field($result) ) {
         echo "<tr>";
-        echo "<td>".$meta->name.":</td>";
+        echo "<td>$meta->name:</td>";
         echo "</tr>";
       }
       echo "</table>";
@@ -57,13 +63,6 @@ if ( isset($_COOKIE["M_ID"]) ) {
       mysqli_free_result($result);
     }
   }
-
-
-
-  /**
-   * close db
-   */
-  require_once("./include/db_connection.php");
 }
 ?>
 
@@ -76,3 +75,11 @@ if ( isset($_COOKIE["M_ID"]) ) {
 </p>
 
 <hr>
+
+
+<?php
+  /**
+   * close db
+   */
+  require("./include/db_close.php");
+?>

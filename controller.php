@@ -1,6 +1,10 @@
 <?php
+  require_once("./include/variable_setting.php");
+?>
 
 
+
+<?php
 if (isset($_POST["page"])) {
   $page = $_POST["page"];
 
@@ -32,7 +36,7 @@ if (isset($_POST["page"])) {
  * page_query.php
  */
 if (isset($_POST["operation_query"])) {
-  setcookie("M_ID", $_POST["M_ID"]);
+  setcookie($ID, $_POST[$ID]);
   header("Location: page_query_result.php");
 }
 
@@ -40,11 +44,10 @@ if (isset($_POST["operation_query"])) {
  * page_add.php
  */
 if (isset($_POST["operation_add"])) {
-  setcookie("cust_no", $_POST["cust_no"]);
-  setcookie("name", $_POST["name"]);
-  setcookie("id", $_POST["id"]);
-  setcookie("tel_no", $_POST["tel_no"]);
-  setcookie("address", $_POST["address"]);
+  foreach ($TABLE_FIELD_NAME_ARRAY as $field_name) {
+    setcookie($field_name, $_POST[$field_name]);
+  }
+
   header("Location: page_add_result.php");
 }
 
@@ -87,3 +90,5 @@ if (isset($_POST["operation_delete2"])) {
 
 
 ?>
+
+

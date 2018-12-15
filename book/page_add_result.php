@@ -42,6 +42,10 @@ if ( isset($_COOKIE[$ID]) ) {
     echo '<p>!資料新增成功!</p>';
   } else {
     echo '<p style="color: red">!資料新增失敗!</p>';
+    if ( mysqli_errno($link) != 0 ) {
+      echo "錯誤代碼: ".mysqli_errno($link)."<br/>";
+      echo "錯誤訊息: ".mysqli_error($link)."<br/>";
+    }
   }
 
 }

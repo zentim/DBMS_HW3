@@ -9,13 +9,13 @@
   /**
    * Setting variable
    */
-  $TABLE_NAME = "member";
-  $ID = "M_ID";
+  $TABLE_NAME = "publisher";  // (1)
+  $ID = "P_ID";  // (2)
 
-  // $TABLE_NAME = "book";
-  // $ID = "B_ID";
-
-  $TABLE_FIELD_NAME_ARRAY = array();
+  /**
+   * Get table field name
+   */
+  $TABLE_FIELD_NAME_ARRAY = array();  // (3)
 
   // 取得SQL指令
   $SQL = "SELECT * ";

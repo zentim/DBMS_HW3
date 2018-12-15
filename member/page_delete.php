@@ -8,9 +8,9 @@
 /**
  * Page's HTML
  */
-$PAGE_QUERY = <<<HTML
+$PAGE_HTML = <<<HTML
 
-<h2>資料庫管理系統-查詢</h2>
+<h2>資料庫管理系統-刪除</h2>
 <hr>
 
 <p>
@@ -18,7 +18,7 @@ $PAGE_QUERY = <<<HTML
     $ID: <input type="text" name="$ID"><br>
 
     <p>
-      <input type="submit" name="operation_query" value="查詢">
+      <input type="submit" name="operation_delete" value="查詢">
       <input type="reset" value="清除">
       <input type="submit" name="page" value="回主畫面">
     </p>
@@ -36,5 +36,5 @@ HTML;
 /**
  * Output HTML
  */
-echo $PAGE_QUERY;
+echo $PAGE_HTML;
 ?>

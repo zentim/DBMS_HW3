@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <h2>資料庫管理系統</h2>
+    <h2>資料庫管理系統</h2><a href="../">回首頁</a>
     <hr>
     <form action="controller.php" method="post">
         1. <input type="submit" name="page" value="查詢"><br>

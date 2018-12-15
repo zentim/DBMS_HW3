@@ -18,28 +18,17 @@
 
 <?php
   /**
-   *
+   * $HTML_TABLE
    */
   $HTML_TABLE = "";
-
-  // 執行SQL查詢
-  $result = @mysqli_query($link, $SQL);
-  if ( mysqli_errno($link) != 0 ) {
-    echo "錯誤代碼: ".mysqli_errno($link)."<br/>";
-    echo "錯誤訊息: ".mysqli_error($link)."<br/>";
-  } else {
-    $HTML_TABLE .= '<table>';
-    while ( $meta = mysqli_fetch_field($result) ) {
-      $HTML_TABLE .= "<tr>";
-      $HTML_TABLE .= "<td>$meta->name:</td>";
-      $HTML_TABLE .= '<td><input type="text" name="' . $meta->name . '"></td>';
-      $HTML_TABLE .= "</tr>";
-    }
-    $HTML_TABLE .= "</table>";
-
-    mysqli_free_result($result);
+  $HTML_TABLE .= '<table>';
+  foreach ($TABLE_FIELD_NAME_ARRAY as $field_name) {
+    $HTML_TABLE .= "<tr>";
+    $HTML_TABLE .= "<td>$field_name:</td>";
+    $HTML_TABLE .= '<td><input type="text" name="' . $field_name . '"></td>';
+    $HTML_TABLE .= "</tr>";
   }
-
+  $HTML_TABLE .= "</table>";
 ?>
 
 
@@ -47,7 +36,7 @@
 /**
  * Page's HTML
  */
-$PAGE_ADD = <<<HTML
+$PAGE_HTML = <<<HTML
 
 <h2>資料庫管理系統-新增</h2>
 <hr>
@@ -83,5 +72,5 @@ HTML;
 /**
  * Output HTML
  */
-echo $PAGE_ADD;
+echo $PAGE_HTML;
 ?>

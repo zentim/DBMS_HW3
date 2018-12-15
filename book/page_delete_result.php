@@ -1,25 +1,34 @@
+<?php
+  require("./include/variable_setting.php");
+?>
+
+<?php
+  /**
+   * connect to db
+   */
+  require("./include/db_connection.php");
+?>
+
+<?php
+  // 取得SQL指令
+  $SQL = "SELECT * ";
+  $SQL .= " FROM $TABLE_NAME WHERE $ID = $_COOKIE[$ID]";
+  $SQL = stripslashes($SQL);
+?>
+
+
+
+
 <h2>資料庫管理系統-刪除</h2>
 <hr>
 
 <?php
 // 是否是表單送回
-if ( isset($_COOKIE["cust_no"]) ) {
-  // 取得SQL指令
-  $sql = "SELECT cust_no AS 客戶代號, name AS 姓名, id AS 統一編號, tel_no AS 電話號碼, address AS 地址";
-  $sql .= " FROM basic WHERE cust_no = " . $_COOKIE["cust_no"];
-  $sql = stripslashes($sql);
-
-
-
-  /**
-  * connect to db
-  */
-  require_once("./include/db_connection.php");
-
+if ( isset($_COOKIE[$ID]) ) {
 
 
   // 執行SQL查詢
-  $result = @mysqli_query($link, $sql);
+  $result = @mysqli_query($link, $SQL);
   if ( mysqli_errno($link) != 0 ) {
     echo "錯誤代碼: ".mysqli_errno($link)."<br/>";
     echo "錯誤訊息: ".mysqli_error($link)."<br/>";
@@ -29,7 +38,7 @@ if ( isset($_COOKIE["cust_no"]) ) {
     // echo "記錄總數: $total_records 筆<br/>";
 
     if ($total_records == 0) {
-      echo "客戶代號: " . $_COOKIE['cust_no'] . '<br>';
+      echo "$ID: $_COOKIE[$ID] <br>";
       echo '<p style="color: red">!資料不存在!</p>';
     } else {
       echo '<table border=0 style="float:left">';
@@ -60,10 +69,7 @@ if ( isset($_COOKIE["cust_no"]) ) {
       mysqli_free_result($result);
     }
   }
-  /**
-  * close db
-  */
-  require_once("./include/db_connection.php");
+
 }
 ?>
 
@@ -71,7 +77,7 @@ if ( isset($_COOKIE["cust_no"]) ) {
 <?php if ($total_records > 0): ?>
   <span style="color: red;">是否真的要刪除?</span>
   <form action="controller.php" method="post" style="display: inline-block;">
-    <input type="hidden" name="cust_no" value="<?php echo $_COOKIE["cust_no"] ?>">
+    <input type="hidden" name="<?php echo $ID ?>" value="<?php echo $_COOKIE[$ID] ?>">
     <input type="submit" name="operation_delete2" value="是">
     <input type="submit" name="operation_delete2" value="否">
   </form>
@@ -87,3 +93,12 @@ if ( isset($_COOKIE["cust_no"]) ) {
 
 
 <hr>
+
+
+
+<?php
+  /**
+   * close db
+   */
+  require("./include/db_close.php");
+?>

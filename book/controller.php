@@ -55,7 +55,7 @@ if (isset($_POST["operation_add"])) {
  * page_update.php
  */
 if (isset($_POST["operation_update"])) {
-  setcookie("cust_no", $_POST["cust_no"]);
+  setcookie($ID, $_POST[$ID]);
   header("Location: page_update_result.php");
 }
 
@@ -63,11 +63,9 @@ if (isset($_POST["operation_update"])) {
  * page_update_result.php
  */
 if (isset($_POST["operation_update2"])) {
-  setcookie("cust_no", $_POST["cust_no"]);
-  setcookie("name", $_POST["name"]);
-  setcookie("id", $_POST["id"]);
-  setcookie("tel_no", $_POST["tel_no"]);
-  setcookie("address", $_POST["address"]);
+  foreach ($TABLE_FIELD_NAME_ARRAY as $field_name) {
+    setcookie($field_name, $_POST[$field_name]);
+  }
   header("Location: page_update_result2.php");
 }
 
@@ -75,7 +73,7 @@ if (isset($_POST["operation_update2"])) {
  * page_delete.php
  */
 if (isset($_POST["operation_delete"])) {
-  setcookie("cust_no", $_POST["cust_no"]);
+  setcookie($ID, $_POST[$ID]);
   header("Location: page_delete_result.php");
 }
 
@@ -83,7 +81,7 @@ if (isset($_POST["operation_delete"])) {
  * page_delete_result.php
  */
 if (isset($_POST["operation_delete2"])) {
-  setcookie("cust_no", $_POST["cust_no"]);
+  setcookie($ID, $_POST[$ID]);
   setcookie("submit_delete", $_POST["operation_delete2"]);
   header("Location: page_delete_result2.php");
 }

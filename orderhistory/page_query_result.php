@@ -11,8 +11,8 @@
 
 <?php
   // 取得SQL指令
-  $SQL = "SELECT * ";
-  $SQL .= " FROM $TABLE_NAME WHERE $ID = $_COOKIE[$ID]";
+  $SQL = "SELECT O_ID, orderhistory.M_ID, Account, M_Name, M_tel, M_Count, M_Amount, Date";
+  $SQL .= " FROM orderhistory, member WHERE orderhistory.M_ID = member.M_ID AND $ID = $_COOKIE[$ID]";
   $SQL = stripslashes($SQL);
 ?>
 

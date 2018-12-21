@@ -23,23 +23,29 @@
   $HTML_TABLE = "";
   $HTML_TABLE .= '<table>';
   foreach ($TABLE_FIELD_NAME_ARRAY as $field_name) {
-      if($field_name == "O_ID")
-      {
-          $SQL1="SELECT MAX(O_ID) FROM member";
-          $result1=mysqli_query($link,$SQL1);
-          $row1=mysqli_fetch_array($result1);
-          $max=$row1['MAX(O_ID)'];
-          $HTML_TABLE .= "<tr>";
-          $HTML_TABLE .= "<td>$field_name:</td>";
-          $HTML_TABLE .= '<td>'.($max+1).'<input type="hidden" name="' .$field_name . '" value="' . ($max+1) . '" readonly></td>';
-          $HTML_TABLE .= "</tr>";
-      }
-      else{
-          $HTML_TABLE .= "<tr>";
-          $HTML_TABLE .= "<td>$field_name:</td>";
-          $HTML_TABLE .= '<td><input type="text" name="' . $field_name . '" require></td>';
-          $HTML_TABLE .= "</tr>";
-      }
+    if($field_name == $ID)
+    {
+        $SQL1="SELECT MAX($ID) FROM $TABLE_NAME";
+        $result1=mysqli_query($link,$SQL1);
+        $row1=mysqli_fetch_array($result1);
+        $max=$row1["MAX($ID)"];
+        $HTML_TABLE .= "<tr>";
+        $HTML_TABLE .= "<td>$field_name:</td>";
+        $HTML_TABLE .= '<td>'.($max+1).'<input type="hidden" name="' .$field_name . '" value="' . ($max+1) . '" required></td>';
+        $HTML_TABLE .= "</tr>";
+    }
+    else if($field_name == "Date"){
+        $HTML_TABLE .= "<tr>";
+        $HTML_TABLE .= "<td>$field_name:</td>";
+        $HTML_TABLE .= '<td><input type="date" name="' .$field_name . '" required></td>';
+        $HTML_TABLE .= "</tr>";
+    }
+    else{
+        $HTML_TABLE .= "<tr>";
+        $HTML_TABLE .= "<td>$field_name:</td>";
+        $HTML_TABLE .= '<td><input type="text" name="' . $field_name . '" required></td>';
+        $HTML_TABLE .= "</tr>";
+    }
   }
   $HTML_TABLE .= "</table>";
 ?>
@@ -62,18 +68,15 @@ $PAGE_HTML = <<<HTML
     <p>
       <input type="submit" name="operation_add" value="新增">
       <input type="reset" value="清除">
-      <input type="submit" name="page" value="回主畫面">
     </p>
   </form>
-<form action="../">
-     <input type="submit" name="page" value="回主畫面">
-</form>
-<form action="index.php">
-     <input type="submit" name="page" value="回上一層">
-</form>
 </p>
 
 <hr>
+
+<form action="controller.php" method="post">
+  <input type="submit" name="page" value="回主畫面">
+</form>
 
 HTML;
 ?>

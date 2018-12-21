@@ -11,7 +11,7 @@
 
 <?php
   // 取得SQL指令
-  $SQL = "SELECT * FROM $TABLE_NAME";
+  $SQL = "SELECT O_ID, orderhistory.M_ID, Account, M_Name, M_tel, M_Count, M_Amount, Date FROM orderhistory, member WHERE orderhistory.M_ID = member.M_ID";
   $SQL = stripslashes($SQL);
 ?>
 

@@ -39,7 +39,6 @@
               $HTML_TABLE .= "<td>$field_name:</td>";
               $HTML_TABLE .= '<td><input type="date" name="' .$field_name . '" required></td>';
               $HTML_TABLE .= "</tr>";
-
       }
       else{
           $HTML_TABLE .= "<tr>";
@@ -59,6 +58,7 @@
 $PAGE_HTML = <<<HTML
 
 <h2>資料庫管理系統-新增</h2>
+
 <hr>
 
 <p>
@@ -72,13 +72,12 @@ $PAGE_HTML = <<<HTML
     </p>
   </form>
 </p>
-<form action="../">
-     <input type="submit" name="page" value="回主畫面">
-</form>
-<form action="index.php">
-     <input type="submit" name="page" value="回上一層">
-</form>
+
 <hr>
+
+<form action="controller.php" method="post">
+  <input type="submit" name="page" value="回主畫面">
+</form>
 
 HTML;
 ?>

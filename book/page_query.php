@@ -15,17 +15,20 @@ $PAGE_HTML = <<<HTML
 
 <p>
   <form action="controller.php" method="post">
-    $ID: <input type="text" name="$ID"><br>
+    $ID: <input type="text" name="$ID" required><br>
 
     <p>
       <input type="submit" name="operation_query" value="查詢">
       <input type="reset" value="清除">
-      <input type="submit" name="page" value="回主畫面">
     </p>
   </form>
 </p>
 
 <hr>
+
+<form action="controller.php" method="post">
+  <input type="submit" name="page" value="回主畫面">
+</form>
 
 HTML;
 ?>

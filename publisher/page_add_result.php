@@ -26,7 +26,6 @@
   }
   $SQL .= ")";
   $SQL = stripslashes($SQL);
-  echo $SQL;
 ?>
 
 

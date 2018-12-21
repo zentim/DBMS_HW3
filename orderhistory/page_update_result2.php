@@ -27,8 +27,6 @@
   $SQL .= "'";
   $SQL .= " WHERE ". $ID . " = " . $_COOKIE[$ID];
   $SQL = stripslashes($SQL);
-
-  echo $SQL;
 ?>
 
 

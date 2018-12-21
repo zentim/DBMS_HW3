@@ -11,7 +11,7 @@
 
 <?php
   // 取得SQL指令
-  $SQL = "SELECT * FROM $TABLE_NAME";
+  $SQL = "SELECT B_ID, B_name, Price, ISBN, Author, book.P_ID, P_name, P_tel, P_address FROM book, publisher WHERE book.P_ID = publisher.P_ID";
   $SQL = stripslashes($SQL);
 ?>
 

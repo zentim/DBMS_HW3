@@ -11,7 +11,7 @@
 
 <?php
   // 取得SQL指令
-  $SQL = "SELECT * FROM $TABLE_NAME";
+  $SQL = "SELECT * FROM $TABLE_NAMEz";
   $SQL = stripslashes($SQL);
 ?>
 
